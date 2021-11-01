@@ -34,3 +34,18 @@ let dicho t =
     else if vh-vb=0 then [|t.(vh)|]
     else fusion_triee (inter t vb ((vb+vh)/2)) (inter t ((vh+vb)/2 +1) vh)
     in inter t 0 (Array.length t-1);;
+    
+    
+    (** truc en test*)
+    let tri_rapide t = 
+    let rec inter t vmin vmax= 
+        let a=ref vmin in
+        if vmax-vmin<=0 then ()
+        else if vmax-vmin =1 then if t.(vmax)<t.(vmin) then swap t vmin vmax
+        else for i=vmin to vmax-1 do
+                (if t.(i)<=t.(vmax) then (swap t i !a; incr a))
+            done;
+        swap t vmax !a;
+        inter t vmin (!a-1); inter t (!a+1) vmax;
+    in inter t 0 ((Array.length t)-1);;
+        
