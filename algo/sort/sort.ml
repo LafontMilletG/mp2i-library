@@ -27,7 +27,7 @@ let sort_bubble t =
       done
   done;;
   
-(** [dicho t] renvoie le tableau t trié *)
+(** [dicho t] renvoie le tableau t trié en utilisant la méthode dichotomique *)
 let dicho t = 
     let rec inter t vb vh =
     if vh-vb=1 then fusion_triee [|t.(vb)|] [|t.(vh)|]
@@ -36,16 +36,16 @@ let dicho t =
     in inter t 0 (Array.length t-1);;
     
     
-    (** truc en test*)
-    let tri_rapide t = 
+(** [tri_rapide t] renvoie le tableau t trié en utilisant la méthode de tri rapide *)
+let tri_rapide t = 
     let rec inter t vmin vmax= 
         let a=ref vmin in
         if vmax-vmin<=0 then ()
-        else if vmax-vmin =1 then if t.(vmax)<t.(vmin) then swap t vmin vmax
-        else for i=vmin to vmax-1 do
-                (if t.(i)<=t.(vmax) then (swap t i !a; incr a))
+        else 
+        if vmax-vmin =1 then (if t.(vmax)<t.(vmin) then swap t vmin vmax)
+        else (for i=vmin to vmax-1 do
+                (if t.(i)<=t.(vmax) then (swap t i (!a); incr a))
             done;
-        swap t vmax !a;
-        inter t vmin (!a-1); inter t (!a+1) vmax;
+        swap t vmax (!a);
+        inter t vmin (!a-1); inter t (!a+1) vmax;)
     in inter t 0 ((Array.length t)-1);;
-        
