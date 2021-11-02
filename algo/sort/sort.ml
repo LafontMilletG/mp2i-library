@@ -36,7 +36,7 @@ let dicho t =
     in inter t 0 (Array.length t-1);;
     
     
-(** [tri_rapide t] renvoie le tableau t trié en utilisant la méthode de tri rapide *)
+(** [tri_rapide t] trie en place le tableau t en utilisant la méthode de tri rapide *)
 let tri_rapide t = 
     let rec inter t vmin vmax= 
         let a=ref vmin in
