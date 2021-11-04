@@ -9,8 +9,9 @@ type 'a stack_imperative = {
 };;
 
 
+(** [tableau_dynamique_de_liste l] renvoie un tableau dynamique implémenté avec la liste l *)
 let tableau_dynamique_de_liste l=
-let base = ref l in
+let base = ref l in (** liste servant de base au tableau dynamique*)
 {
 length = (fun () -> List.length !base);
 append=(fun e ->base:= List.append !base [e]);
